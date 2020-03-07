@@ -1,0 +1,64 @@
+import React from 'react';
+import { StyleSheet, View, Button, Image, Text } from 'react-native';
+
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
+import Colors from '../constants/colors';
+import MainButton from '../components/MainButton';
+
+const GameOverScreen = (props) => {
+  return (
+    <View style={styles.screen}>
+      <TitleText>The Game is Over!</TitleText>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../assets/success.png')}
+          // source={{ uri: 'https://images.unsplash.com/photo-1505771215590-c5fa0aec29b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80' }}
+          style={styles.image} 
+          resizeMode="cover" />
+      </View>
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>
+          Then computer took <Text style={styles.highlight}>{props.roundNumber}</Text> rounds to find the 
+          number <Text style={styles.highlight}>{props.userNumber}</Text>
+        </BodyText>
+      </View>
+      <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    borderWidth: 3,
+    borderColor: 'black',
+    overflow: 'hidden',
+    marginVertical: 15
+  },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
+  highlight: {
+    color: Colors.primary,
+    fontFamily: 'open-sans-bold'
+  },
+  resultContainer: {
+    marginHorizontal: 30,
+    marginVertical: 15
+  },
+  resultText: {
+    textAlign: 'center',
+    fontSize: 20
+  }
+});
+
+export default GameOverScreen;
